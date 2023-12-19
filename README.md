@@ -1,4 +1,3 @@
-# DBMS-Project-Using-JDBC-in-Postgresql
 # JDBC PostgreSQL Database Interaction
 
 This Java program demonstrates JDBC (Java Database Connectivity) usage with PostgreSQL database for performing CRUD (Create, Read, Update, Delete) operations.
