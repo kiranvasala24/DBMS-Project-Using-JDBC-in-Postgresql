@@ -15,7 +15,7 @@ public class main {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
 
-	//Query 3
+	//Query 3 -The product p1 changes its name to pp1 in Product and Stock.
   // Update Product table
             Statement updateStatement = connection.createStatement();
             updateStatement.executeUpdate("UPDATE Product SET pname = 'pp1' WHERE pname = 'p1'");
@@ -26,7 +26,7 @@ public class main {
             updateStockStatement.executeUpdate("UPDATE Stock SET prod = 'pp1' WHERE prod = 'p1'");
             updateStockStatement.close();
 	
-	//Query 4
+	//Query 4 - The depot d1 changes its name to dd1 in Depot and Stock.
 	// Update Depot table
             Statement updateDepotStatement = connection.createStatement();
             updateDepotStatement.executeUpdate("UPDATE Depot SET dep = 'dd1' WHERE dep = 'd1'");
@@ -37,19 +37,19 @@ public class main {
             updateStockStatement.executeUpdate("UPDATE Stock SET dep = 'dd1' WHERE dep = 'd1'");
             updateStockStatement.close();
 
-	//Query 5
-	// Update Depot table
-            Statement updateDepotStatement = connection.createStatement();
-            updateDepotStatement.executeUpdate("UPDATE Depot SET dep = 'dd1' WHERE dep = 'd1'");
-            updateDepotStatement.close();
+	//Query 5 - We add a product (p100, cd, 5) in Product and (p100, d2, 50) in Stock.
+              // Insert into Product table
+            Statement insertProductStatement = connection.createStatement();
+            insertProductStatement.executeUpdate("INSERT INTO Product(prod, pname, price) VALUES ('p100', 'cd', 5)");
+            insertProductStatement.close();
 
-            // Update Stock table
-            Statement updateStockStatement = connection.createStatement();
-            updateStockStatement.executeUpdate("UPDATE Stock SET dep = 'dd1' WHERE dep = 'd1'");
-            updateStockStatement.close();
+            // Insert into Stock table
+            Statement insertStockStatement = connection.createStatement();
+            insertStockStatement.executeUpdate("INSERT INTO Stock(prod, dep, quantity) VALUES ('p100', 'd2', 50)");
+            insertStockStatement.close();
 
 
-	//Query 6 
+	//Query 6 - We add a depot (d100, Chicago, 100) in Depot and (p1, d100, 100) in Stock.
             // Insert into Depot table
             Statement insertDepotStatement = connection.createStatement();
             insertDepotStatement.executeUpdate("INSERT INTO Depot(dep, addr, volume) VALUES ('d100', 'Chicago', 100)");
@@ -89,6 +89,10 @@ public class main {
             }
             stockResultSet.close();
             fetchStockStatement.close();
+
+	 // Fetch the updated content of the Product table
+            Statement fetchProductStatement = connection.createStatement();
+            ResultSet productResultSet = fetchProductStatement.executeQuery("SELECT * FROM Product");	
 
 	// Display the updated contents of the Product table
             System.out.println("Product Table:");
