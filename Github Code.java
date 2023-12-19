@@ -15,7 +15,7 @@ public class main {
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
 
-	//Query 3 - //The product p1 changes its name to pp1 in Product and Stock.
+	//Query 3 - The product p1 changes its name to pp1 in Product and Stock.
   // Update Product table
             Statement updateStatement = connection.createStatement();
             updateStatement.executeUpdate("UPDATE Product SET pname = 'pp1' WHERE pname = 'p1'");
